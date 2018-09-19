@@ -15,7 +15,7 @@ class Profil {
 
         private $plugin;
         private $prefix = "";
-
+        // ComingSoon UI 
     public function __Construct(Main $plugin){
         $this->plugin = $plugin;
         
