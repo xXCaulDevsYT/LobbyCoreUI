@@ -27,7 +27,7 @@ class Main extends PluginBase implements Listener
     public function onDisable()
     {
         foreach ($this->getServer()->getOnlinePlayers() as $p) {
-            $p->transfer("80.99.208.62", "19150");
+            $p->transfer("80.99.208.62", "1941");
         }
     }
 
