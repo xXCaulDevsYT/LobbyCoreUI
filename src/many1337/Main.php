@@ -12,6 +12,11 @@ use muqsit\invmenu\InvMenuHandler;
 use pocketmine\Server;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\block\BlockPlaceEvent;
+use pocketmine\event\player\PlayerDropItemEvent;
+use pocketmine\event\player\PlayerExhaustEvent;
+use pocketmine\event\player\PlayerItemConsumeEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\Listeners;
 use pocketmine\utils\TextFormat;
@@ -49,6 +54,34 @@ class Main extends PluginBase implements Listener
         $event->setQuitMessage("§7[§c-§7] §c" . $name);
 
     }
+    	public function onBreak(BlockBreakEvent $ev)
+	{
+
+		$config = new Config($this->getDataFolder() . "config.yml" , Config::YAML);
+		$player = $ev->getPlayer();
+		$ev->setCancelled(true);
+		$player->sendMessage("You can not break a block!");
+	}
+
+	public function onPlace(BlockPlaceEvent $ev)
+	{
+		$ev->setCancelled(true);
+	}
+
+	public function Hunger(PlayerExhaustEvent $ev)
+	{
+		$ev->setCancelled(true);
+	}
+
+	public function ItemMove(PlayerDropItemEvent $ev)
+	{
+		$ev->setCancelled(true);
+	}
+
+	public function onConsume(PlayerItemConsumeEvent $ev)
+	{
+		$ev->setCancelled(true);
+	}
 
     public function Main(Player $player)
     {
