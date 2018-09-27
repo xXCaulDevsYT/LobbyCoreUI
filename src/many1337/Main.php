@@ -54,34 +54,35 @@ class Main extends PluginBase implements Listener
         $event->setQuitMessage("§7[§c-§7] §c" . $name);
 
     }
-    	public function onBreak(BlockBreakEvent $ev)
-	{
+	
+    public function onBreak(BlockBreakEvent $ev)
+    {
 
 		$config = new Config($this->getDataFolder() . "config.yml" , Config::YAML);
 		$player = $ev->getPlayer();
 		$ev->setCancelled(true);
 		$player->sendMessage("You can not break a block!");
-	}
+    }
 
-	public function onPlace(BlockPlaceEvent $ev)
-	{
+    public function onPlace(BlockPlaceEvent $ev)
+    {
 		$ev->setCancelled(true);
-	}
+    }
 
-	public function Hunger(PlayerExhaustEvent $ev)
-	{
+    public function Hunger(PlayerExhaustEvent $ev)
+    {
 		$ev->setCancelled(true);
-	}
+    }
 
-	public function ItemMove(PlayerDropItemEvent $ev)
-	{
+    public function ItemMove(PlayerDropItemEvent $ev)
+    {
 		$ev->setCancelled(true);
-	}
+    }
 
-	public function onConsume(PlayerItemConsumeEvent $ev)
-	{
+    public function onConsume(PlayerItemConsumeEvent $ev)
+    {
 		$ev->setCancelled(true);
-	}
+    }
 
     public function Main(Player $player)
     {
@@ -99,7 +100,7 @@ class Main extends PluginBase implements Listener
 
         if ($item->getCustomName() == TextFormat::YELLOW . "Navigator") {
             $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-            $form = $api->createSimpleForm(function (Player $sender, array $data) {
+            $form = $api->createSimpleForm(function (Player $sender, $data) {
                 $result = $data[0];
 
                 if ($result === null) {
