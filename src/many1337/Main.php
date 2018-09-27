@@ -54,15 +54,6 @@ class Main extends PluginBase implements Listener
         $event->setQuitMessage("§7[§c-§7] §c" . $name);
 
     }
-	
-    public function onBreak(BlockBreakEvent $ev)
-    {
-
-		$config = new Config($this->getDataFolder() . "config.yml" , Config::YAML);
-		$player = $ev->getPlayer();
-		$ev->setCancelled(true);
-		$player->sendMessage("You can not break a block!");
-    }
 
     public function onPlace(BlockPlaceEvent $ev)
     {
