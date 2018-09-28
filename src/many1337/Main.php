@@ -8,7 +8,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
-use muqsit\invmenu\InvMenuHandler;
+// Mode CLOSED! use muqsit\invmenu\InvMenuHandler;
 use pocketmine\Server;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
@@ -18,15 +18,28 @@ use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerItemConsumeEvent;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\player\PlayerItemHeldEvent;
+use pocketmine\event\entity\ProjectileHitEvent;
+use pocketmine\event\entity\ProjectileLaunchEvent;
 use pocketmine\event\Listeners;
 use pocketmine\utils\TextFormat;
 
 class Main extends PluginBase implements Listener
 {
 
-    public function onEnable()
-    {
+    public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+        $pri = $this->getServer()->getPluginManager()->getPlugin("ProfileUI");
+        if($api === null){
+            $this->getServer()->getLogger()->notice("[LobbyCore] Please replace a FormAPI plugin!");
+        }
+
+        if($pri === null){
+            $this->getServer()->getLogger()->notice("[LobbyCore] Please use a ProfileUI plugin! 
+            (https://github.com/Infernus101/ProfileUI)");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
     }
 
     public function onDisable()
@@ -79,8 +92,8 @@ class Main extends PluginBase implements Listener
     {
         $player->getInventory()->clearAll();
         $player->getInventory()->setItem(4, Item::get(345)->setCustomName(TextFormat::YELLOW . "Navigator"));
-        $player->getInventory()->setItem(8, Item::get(399)->setCustomName(TextFormat::GREEN . "Infos"));
         $player->getInventory()->setItem(0, Item::get(397, 3)->setCustomName(TextFormat::AQUA . "Profile"));
+        $player->getInventory()->setItem(8, Item::get(399)->setCustomName(TextFormat::GREEN . "Info"));
 
     }
 
@@ -131,6 +144,17 @@ class Main extends PluginBase implements Listener
             $form->addButton(TextFormat::BOLD . "§aHungerGames §7- §7[§cCLOSED§7]");
             $form->sendToPlayer($player);
 
+        }
+
+        if ($item->getCustomName() == TextFormat::AQUA . "Profile") {
+
+            $this->getServer()->dispatchCommand($event->getPlayer(), "profil " . $player);
+        }
+
+        if ($item->getCustomName() == TextFormat::GREEN . "Info") {
+
+            $event->addTitle("Soon...", "Not Working!");
+            $event = $event->getPlayer();
         }
     }
 }
