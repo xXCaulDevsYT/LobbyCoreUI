@@ -69,7 +69,7 @@ class InvMenu {
     /** @var callable|null */
     private $listener;
 
-    /** @var callable|null */
+    /** @var callable|null */ 
     private $inventoryCloseListener;
 
     private function __construct(int $type, ?string $customInvClass = null)
