@@ -8,7 +8,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
-// Mode CLOSED! use muqsit\invmenu\InvMenuHandler;
+// Mode CLOSED! use muqsit\invmenu\InvMenuHandler; 
 use pocketmine\Server;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
