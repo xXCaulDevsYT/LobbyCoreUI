@@ -94,6 +94,8 @@ class Main extends PluginBase implements Listener
         $player->getInventory()->setItem(4, Item::get(345)->setCustomName(TextFormat::YELLOW . "Navigator"));
         $player->getInventory()->setItem(0, Item::get(397, 3)->setCustomName(TextFormat::AQUA . "Profile"));
         $player->getInventory()->setItem(8, Item::get(399)->setCustomName(TextFormat::GREEN . "Info"));
+        $player->getInventory()->setItem(6, Item::get(288)->setCustomName(TextFormat::BLUE . "Fly"));
+        $player->getInventory()->setItem(2, Item::get(280)->setCustomName(TextFormat::YELLOW . "Hide ".TextFormat::GREEN."Players"));
 
     }
 
@@ -153,8 +155,55 @@ class Main extends PluginBase implements Listener
 
         if ($item->getCustomName() == TextFormat::GREEN . "Info") {
 
-            $event->addTitle("Soon...", "Not Working!");
-            $event = $event->getPlayer();
+            $player = $event->getPlayer();
+            $player->addTitle("§c§oSoon...", "§aNext update in working!");
+
+        }
+
+        if ($item->getCustomName() == TextFormat::BLUE . "Fly") {
+            $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+            $form = $api->createSimpleForm(function (Player $sender, $data){
+                $result = $data;
+                if($result != null) {
+                }
+                switch ($result) {
+                    case 0;
+                        $sender->setAllowFlight(true);
+                        $sender->sendMessage("§aFly has been enabled!§r");
+                        break;
+                    case 1;
+                        $sender->setAllowFlight(false);
+                        $sender->sendMessage("§cFly has been disabled!");
+                        break;
+                    case 2;
+                        $sender->sendMessage("§4FlyUI has been closed.");
+                }
+            });
+            $form->setTitle("§6Fly Mode");
+            $form->setContent("§b§oOn or Off your fly§r");
+            $form->addbutton("§l§aON", 0);
+            $form->addbutton("§l§cOFF", 1);
+            $form->addButton("§lEXIT", 2);
+            $form->sendToPlayer($player);
+        }
+
+        if ($item->getName() === TextFormat::YELLOW . "Hide ".TextFormat::GREEN."Players") {
+            $player->getInventory()->remove(Item::get(280)->setCustomName(TextFormat::YELLOW . "Hide ".TextFormat::GREEN."Players"));
+            $player->getInventory()->setItem(2, Item::get(369)->setCustomName(TextFormat::YELLOW . "Show ".TextFormat::GREEN."Players"));
+            $player->sendMessage(TextFormat::RED . "Disabled Player Visibility!");
+            $this->hideall[] = $player;
+            foreach ($this->getServer()->getOnlinePlayers() as $p2) {
+                $player->hideplayer($p2);
+            }
+
+        } elseif ($item->getName() === TextFormat::YELLOW . "Show ".TextFormat::GREEN."Players"){
+            $player->getInventory()->remove(Item::get(369)->setCustomName(TextFormat::YELLOW . "Show ".TextFormat::GREEN."Players"));
+            $player->getInventory()->setItem(2, Item::get(280)->setCustomName(TextFormat::YELLOW . "Hide ".TextFormat::GREEN."Players"));
+            $player->sendMessage(TextFormat::GREEN . "Enabled Player Visibility!");
+            unset($this->hideall[array_search($player, $this->hideall)]);
+            foreach ($this->getServer()->getOnlinePlayers() as $p2) {
+                $player->showplayer($p2);
+            }
         }
     }
 }
