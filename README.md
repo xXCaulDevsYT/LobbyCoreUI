@@ -1,5 +1,5 @@
 # LobbyCore
-LobbyCore UI/GUI plugin 1.6
+LobbyCore UI plugin 1.6
 
 ## My Helper Discord Server | <a href="https://discord.gg/dUfySJ2"><img src="https://discordapp.com/api/guilds/402639859535052811/embed.png" alt="Discord server"/></a> |
 
