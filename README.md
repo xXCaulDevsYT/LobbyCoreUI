@@ -6,11 +6,11 @@ LobbyCore UI plugin 1.6
 - [x] Inventory Items
 - Player Info (Working) Please use ProfileUI plugin ( https://github.com/Infernus101/ProfileUI )
 - Navigator UI (Finished)
+- Fly UI (Finish)
+- Hide-Show Players Item (Finish)
+- Info UI (Next UPDATE!)
+- Easy Config (Next UPDATE!)
 - Party Menu (Soon...)
---------
-
-Chest Inventory GUI (Working)
-- Vanilla UI (Navigtor on working,...)
 -----------
 Party Menu (In Plugin PHP)
 
