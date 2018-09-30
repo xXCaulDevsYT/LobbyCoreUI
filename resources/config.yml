@@ -1,0 +1,21 @@
+#################################
+# Configuration for LobbyCore #
+#################################
+
+// use § for text color
+
+# Item names (for the teleport items):
+
+Game-1-Name: Survival
+Game-2-Name: Plots
+Game-3-Name: SkyPvP
+Game-4-Name: BedWars
+Game-5-Name: MLG-Rush
+
+# Transfer (for the teleport / UI form):
+
+ip-port: transferserver 127.0.0.1 19132
+ip-port2: transferserver 127.0.0.1 19132
+ip-port3: transferserver 127.0.0.1 19132
+ip-port4: transferserver 127.0.0.1 19132
+ip-port5: transferserver 127.0.0.1 19132

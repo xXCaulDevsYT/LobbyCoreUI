@@ -8,6 +8,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\Config;
 // Mode CLOSED! use muqsit\invmenu\InvMenuHandler; 
 use pocketmine\Server;
 use pocketmine\event\player\PlayerJoinEvent;
@@ -28,6 +29,8 @@ class Main extends PluginBase implements Listener
 {
 
     public function onEnable() {
+        @mkdir($this->getDataFolder());
+        $this->saveResource("config.yml");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $pri = $this->getServer()->getPluginManager()->getPlugin("ProfileUI");
@@ -103,6 +106,12 @@ class Main extends PluginBase implements Listener
     {
         $player = $event->getPlayer();
         $item = $player->getInventory()->getItemInHand();
+        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+        $game1 = $cfg->get("Game-1-Name");
+        $game2 = $cfg->get("Game-2-Name");
+        $game3 = $cfg->get("Game-3-Name");
+        $game4 = $cfg->get("Game-4-Name");
+        $game5 = $cfg->get("Game-5-Name");
 
         if ($item->getCustomName() == TextFormat::YELLOW . "Navigator") {
             $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
@@ -114,24 +123,29 @@ class Main extends PluginBase implements Listener
                 }
                 switch ($result) {
                     case 0:
-                        $command = "transferserver 127.0.0.1 1";
-                        $this->getServer()->getCommandMap()->dispatch($sender, $command);
+                        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+                        $ip = $cfg->get("ip-port");
+                        $this->getServer()->getCommandMap()->dispatch($sender, $ip);
                         break;
                     case 1:
-                        $command = "transferserver 127.0.0.1 2";
-                        $this->getServer()->getCommandMap()->dispatch($sender, $command);
+                        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+                        $ip2 = $cfg->get("ip-port2");
+                        $this->getServer()->getCommandMap()->dispatch($sender, $ip2);
                         break;
                     case 2:
-                        $command = "transferserver 127.0.0.1 3";
-                        $this->getServer()->getCommandMap()->dispatch($sender, $command);
+                        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+                        $ip3 = $cfg->get("ip-port3");
+                        $this->getServer()->getCommandMap()->dispatch($sender, $ip3);
                         break;
                     case 3:
-                        $command = "transferserver 127.0.0.1 4";
-                        $this->getServer()->getCommandMap()->dispatch($sender, $command);
+                        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+                        $ip4 = $cfg->get("ip-port4");
+                        $this->getServer()->getCommandMap()->dispatch($sender, $ip4);
                         break;
                     case 4:
-                        $command = "transferserver 127.0.0.1 5";
-                        $this->getServer()->getCommandMap()->dispatch($sender, $command);
+                        $cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+                        $ip5 = $cfg->get("ip-port5");
+                        $this->getServer()->getCommandMap()->dispatch($sender, $ip5);
                         break;
 
 
@@ -139,11 +153,11 @@ class Main extends PluginBase implements Listener
             });
             $form->setTitle("§l§aServer Selector");
             $form->setContent("Answer a server for teleporting");
-            $form->addButton(TextFormat::BOLD . "§aSkyBlock §7- §7[§cCLOSED§7]");
-            $form->addButton(TextFormat::BOLD . "§aFast§fBridge §7- §7[§cCLOSED§7]");
-            $form->addButton(TextFormat::BOLD . "§aSkyWars §7- §7[§cCLOSED§7]");
-            $form->addButton(TextFormat::BOLD . "§aBedWars §7- §7[§cCLOSED§7]");
-            $form->addButton(TextFormat::BOLD . "§aHungerGames §7- §7[§cCLOSED§7]");
+            $form->addButton(TextFormat::BOLD . $game1);
+            $form->addButton(TextFormat::BOLD . $game2);
+            $form->addButton(TextFormat::BOLD . $game3);
+            $form->addButton(TextFormat::BOLD . $game4);
+            $form->addButton(TextFormat::BOLD . $game5);
             $form->sendToPlayer($player);
 
         }
