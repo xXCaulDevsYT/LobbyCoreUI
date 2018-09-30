@@ -6,16 +6,16 @@
 
 # Item names (for the teleport items):
 
-Game-1-Name: Survival
-Game-2-Name: Plots
-Game-3-Name: SkyPvP
-Game-4-Name: BedWars
-Game-5-Name: MLG-Rush
+Game-1-Name: §6SumoPVP §l§aONLINE
+Game-2-Name: §2Plots §l§aONLINE
+Game-3-Name: §1PotFFA §l§cOFFLINE
+Game-4-Name: §dDuels §l§cOFFLINE
+Game-5-Name: §3MLGRush §l§cOFFLINE
 
 # Transfer (for the teleport / UI form):
 
-ip-port: transferserver 127.0.0.1 19132
-ip-port2: transferserver 127.0.0.1 19132
-ip-port3: transferserver 127.0.0.1 19132
-ip-port4: transferserver 127.0.0.1 19132
-ip-port5: transferserver 127.0.0.1 19132
+ip-port: transferserver PvPAurora.ddns.net 19132
+ip-port2: transferserver PvPAurora.ddns.net 19132
+ip-port3: transferserver PvPAurora.ddns.net 19132
+ip-port4: transferserver PvPAurora.ddns.net 19132
+ip-port5: transferserver PvPAurora.ddns.net 19132
